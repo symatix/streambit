@@ -1,69 +1,59 @@
-import React from 'react';
-import Icon from '../Icons/Icon';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import NavItem from './NavItem';
+import { changeActiveNav } from '../../actions';
 
-const navItems = [
-   {
-      id: "house",
-      text: "Home",
-      url: "#",
-      active: true,
-   },
-   {
-      id: "family-room",
-      text: "Family",
-      url: "#",
-      active: false,
-   },
-   {
-      id: "team",
-      text: "Business",
-      url: "#",
-      active: false,
-   },
-   {
-      id: "time",
-      text: "Workshops",
-      url: "#",
-      active: false,
-   },
-   {
-      id: "question",
-      text: "About us",
-      url: "#",
-      active: false,
-   },
-]
+class Navigation extends Component{
+   constructor(props){
+      super(props);
 
-const Navigation = (props) => {
-
-   const renderItems = () => {
-      return navItems.map(({ id, text, url, active }) => {
-         const css = active
-            ? ["side-nav__item", "side-nav__item--active"].join(' ')
-            : "side-nav__item";
-
-         return(
-            <li className={css}>
-               <a href={url} className="side-nav__link">
-                  <Icon css="side-nav__icon" id={id} />
-                  <span>{text}</span>
-               </a>
-            </li>
-         )
-      })
+      this.handleClick = this.handleClick.bind(this);
    }
 
-   return (
-      <nav className="sidebar">
-         <ul className="side-nav">
-            {renderItems()}
-         </ul>
+   applyStyle(active){
+      let css = "side-nav__item";
 
-         <div className="legal">
-            &copy; 2018 by Constellations. All rights reserved.
-         </div>
-      </nav>
-   );
+      if (active) {
+         css =  [css, "side-nav__item--active"].join(' ')
+      }
+      return css
+   }
+
+   handleClick(id){
+      const newNav = this.props.nav.map(n => n.id === id
+         ? n = {...n, active: true }
+         : n = {...n, active: false }
+      )
+      this.props.changeActiveNav(newNav)
+   }
+
+   renderItems(){
+      return this.props.nav.map(({ id, text, url, active }) => {
+         return <NavItem 
+            changeNav={this.handleClick}
+            key={id}
+            css={this.applyStyle(active)} 
+            url={url} 
+            id={id} 
+            text={text} />
+      })
+   }
+   render(){
+      return (
+         <nav className="sidebar">
+            <ul className="side-nav">
+               {this.renderItems()}
+            </ul>
+            <div className="legal">
+               &copy; 2018 by streamBit. All rights reserved.
+            </div>
+         </nav>
+      );
+   }
+   
 }
 
-export default Navigation;
+function mapStateToProps({ nav }){
+   return { nav }
+}
+export default connect(mapStateToProps, { changeActiveNav })(Navigation);

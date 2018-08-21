@@ -1,15 +1,15 @@
 import React from 'react';
-import SearchBar from './SearchBar';
+//import SearchBar from './SearchBar';
 import Title from './Title';
-import UserNav from './UserNav';
-import Icon from '../Icons/Icon';
+//import UserNav from './UserNav';
+//import Icon from '../Icons/Icon';
 
 const Header = (props) => {
    return (
       <header className="header">
-         <Icon css="logo" id="lighthouse" />
+         {/*<Icon css="logo" id="lighthouse" />*/}
          <Title />
-         <UserNav />
+         {/*<UserNav />*/}
       </header>
    );
 }

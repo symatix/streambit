@@ -1,12 +1,13 @@
 import React from 'react';
 import Overview from '../Overview';
 
-const Home = (props) => {
+
+const Equipment = (props) => {
    return (
       <main className="home-view">
-         <Overview heading={"audio production"}/>
+         <Overview heading="studio equipment" />
       </main>
    );
 }
 
-export default Home;
+export default Equipment;

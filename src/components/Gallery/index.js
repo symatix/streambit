@@ -2,16 +2,8 @@ import React from 'react';
 
 const images = [
    {
-      src: "/img/home-1.jpg",
+      src: "/img/cover-oldie.jpg",
       alt: "Image One"
-   },
-   {
-      src: "/img/home-2.jpg",
-      alt: "Image Two"
-   },
-   {
-      src: "/img/home-3.jpg",
-      alt: "Image Three"
    },
 ]
 
