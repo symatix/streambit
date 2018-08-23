@@ -11,13 +11,15 @@ const Main = (props) => {
    return (
       <div>
          <Gallery />
-         <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route exact path='/services' component={Services}/>
-            <Route exact path='/voice' component={Voice}/>
-            <Route exact path='/equipment' component={Equipment}/>
-            <Route exact path='/about' component={AboutUs}/>
-         </Switch>
+         <div className="content">
+            <Switch>
+               <Route exact path='/' component={Home}/>
+               <Route exact path='/services' component={Services}/>
+               <Route exact path='/voice' component={Voice}/>
+               <Route exact path='/equipment' component={Equipment}/>
+               <Route exact path='/about' component={AboutUs}/>
+            </Switch>
+         </div>
       </div>
    );
 }
